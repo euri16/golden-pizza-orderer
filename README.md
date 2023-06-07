@@ -2,6 +2,12 @@
 
 The Golden Pizza Orderer is an Android application that simplifies your pizza ordering process. Users can choose up to two pizza flavors and the price will be automatically calculated as the sum of half the price of each selected flavor.
 
+<div>
+    <img src="https://github.com/euri16/golden-pizza-orderer/blob/main/golden_pizza.png" alt="Screenshot 1" width="31%" />
+    <img src="https://github.com/euri16/golden-pizza-orderer/blob/main/golden_pizza2.png" alt="Screenshot 1" width="31%" />
+    <img src="https://github.com/euri16/golden-pizza-orderer/blob/main/golden_pizza3.png" alt="Screenshot 1" width="31%" />
+</div>
+
 ## Table of Contents
 
 - [Features](#features)
