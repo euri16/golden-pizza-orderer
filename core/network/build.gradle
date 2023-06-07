@@ -1,0 +1,57 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id "com.google.dagger.hilt.android"
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'dev.eury.goldenpizza.network'
+    compileSdk rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "API_BASE_URL", "\" http://static.mozio.com/mobile/tests/\""
+        }
+        release {
+            buildConfigField "String", "API_BASE_URL", "\" http://static.mozio.com/mobile/tests/\""
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.targetCompatibility
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.kotlinOptionsJVMTarget
+    }
+    kotlin {
+        jvmToolchain(rootProject.ext.kotlinJVMToolchain)
+    }
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+dependencies {
+    implementation libs.moshi.kotlin
+    implementation libs.moshi.retrofitConverter
+    implementation libs.retrofit
+    implementation libs.okhttp.retrofitLogging
+    implementation libs.okhttp.core
+
+    //di
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    kaptAndroidTest libs.hilt.compiler
+}

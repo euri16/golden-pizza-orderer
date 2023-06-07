@@ -1,0 +1,55 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'dev.eury.goldenpizza.ui_common'
+    compileSdk rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.androidxComposeKotlinCompilerExt.get()
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.targetCompatibility
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.kotlinOptionsJVMTarget
+    }
+    kotlin {
+        jvmToolchain(rootProject.ext.kotlinJVMToolchain)
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.coreKtx
+
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.androidx.compose.ui
+    implementation libs.androidx.compose.uiGraphics
+    implementation libs.androidx.compose.uiToolingPreview
+    implementation libs.androidx.compose.material3
+
+    //lifecycle
+    implementation libs.androidx.lifecycle.runtimeKtx
+    implementation libs.androidx.lifecycle.viewModelKtx
+}

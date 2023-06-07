@@ -1,0 +1,78 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id "com.google.dagger.hilt.android"
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'dev.eury.goldenpizza.pizzabuilder'
+    compileSdk rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion libs.versions.androidxComposeKotlinCompilerExt.get()
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.targetCompatibility
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.kotlinOptionsJVMTarget
+    }
+    kotlin {
+        jvmToolchain(rootProject.ext.kotlinJVMToolchain)
+    }
+}
+
+dependencies {
+    implementation project(":core:data")
+    implementation project(":core:domain")
+    implementation project(":core:ui-common")
+
+    implementation libs.okhttp.core
+
+    //lifecycle
+    implementation libs.androidx.lifecycle.runtimeKtx
+    implementation libs.androidx.lifecycle.viewModelKtx
+    implementation libs.androidx.lifecycle.runtimeCompose
+
+    //compose
+    implementation platform(libs.androidx.compose.bom)
+    implementation libs.androidx.compose.ui
+    implementation libs.androidx.compose.uiGraphics
+    implementation libs.androidx.compose.ui.tooling
+    implementation libs.androidx.compose.uiToolingPreview
+    implementation libs.androidx.compose.material3
+
+    //di
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+    kaptAndroidTest libs.hilt.compiler
+    implementation libs.hilt.navigation.compose
+
+    implementation libs.glide
+    implementation libs.glideCompose
+
+    testImplementation project(":core:testing")
+}

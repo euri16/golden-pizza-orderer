@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="start_building_btn">Start Building Your Pizza!</string>
+    <string name="choose_up_to_2_flavors_title">Choose up to 2 flavors</string>
+    <string name="your_total_is">Your total is: %1$s</string>
+    <string name="network_issue_error">Ooops! We couldn\'t load the data, check your internet and try again.</string>
+    <string name="retry">Retry</string>
+    <string name="order">Order</string>
+    <string name="order_confirmed">Order Confirmed!</string>
+    <string name="summary">Summary</string>
+    <string name="total_price">Total: %1$s</string>
+    <string name="got_it">Got it!</string>
+</resources>

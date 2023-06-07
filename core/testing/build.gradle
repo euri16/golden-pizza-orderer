@@ -1,0 +1,49 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'dev.eury.goldenpizza.testing'
+    compileSdk rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.targetCompatibility
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.kotlinOptionsJVMTarget
+    }
+    kotlin {
+        jvmToolchain(rootProject.ext.kotlinJVMToolchain)
+    }
+}
+
+dependencies {
+    implementation project(":core:domain")
+
+    api libs.test.junit4
+    api libs.test.mockk
+    api libs.test.androidx.core
+    api libs.test.androidx.coreKtx
+    api libs.test.androidx.coreTesting
+    api libs.test.androidx.ext
+    api libs.test.androidx.rules
+    api libs.test.kotlinxCoroutines
+
+    api libs.test.turbine
+}
